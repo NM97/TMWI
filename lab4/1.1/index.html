@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title></title>
+</head>
+<style>
+
+div {
+    -moz-box-flex: 1;
+    -webkit-box-flex: 1;
+    box-flex: 1;
+    height: 100px;
+    width: 100px;
+}
+.v1{
+    background : #FCC;
+}
+
+.v2{
+    background : #CFC;
+}
+
+.v3{
+    background : #CCF;
+}
+</style>
+<body>
+    <script>
+        function counter(id) {
+            var cnt = parseInt(document.getElementById("counter" + id).value);
+            cnt++;
+            document.getElementById("counter" + id).value = cnt;
+            document.getElementById('clicker' + id).innerHTML = 'Licznik:' + cnt;
+        }
+    </script>
+    <div style="display:inline">
+        <div class="v1" onclick="counter(1);">
+            <p id='clicker1'>Licznik:</p>
+            <input type="hidden" id="counter1" value="0">
+        </div>
+        <div class="v2" onclick="counter(2);">
+            <p id='clicker2'>Licznik:</p>
+            <input type="hidden" id="counter2" value="0">
+        </div>
+        <div class="v3" onclick="counter(3);">
+            <p id='clicker3'>Licznik:</p>
+            <input type="hidden" id="counter3" value="0">
+        </div>
+    </div>
+</body>
+</html>

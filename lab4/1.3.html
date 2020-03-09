@@ -1,0 +1,43 @@
+<!DOCTYPE HTML>
+<html lang="pl">
+  <head>
+    <meta charset="utf-8">
+    <style>
+      body {
+        margin: 0px;
+        padding: 0px;
+      }
+    </style>
+  </head>
+  <body data-rsssl=1>
+    <canvas id="Canvas" width="600" height="600" style="border: 1px solid black;"></canvas>
+    <script>
+      function writeMessage(canvas, message) {
+        var context = canvas.getContext('2d');
+        context.clearRect(0, 0, canvas.width, canvas.height);
+        context.font = '18pt Calibri';
+        context.fillStyle = 'black';
+        context.fillText(message, 10, 25);
+      }
+      function getMousePos(canvas, evt) {
+        var rect = canvas.getBoundingClientRect();
+        return {
+          x: evt.clientX - rect.left,
+          y: evt.clientY - rect.top
+        };
+      }
+      var canvas = document.getElementById('Canvas');
+      var context = canvas.getContext('2d');
+
+      canvas.addEventListener('mousemove', function(evt) {
+        var mousePos = getMousePos(canvas, evt);
+        var message = 'Pozycja myszy: x ' + mousePos.x + ', y ' + mousePos.y;
+        writeMessage(canvas, message);
+      }, false);
+      canvas.addEventListener('mouseleave', () => {
+        var message = 'Kursor poza płótnem';
+        writeMessage(canvas, message);
+      })
+    </script>
+  </body>
+</html>
