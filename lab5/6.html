@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script type="text/javascript" src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js"></script>
+</head>
+
+<body>
+    <textarea maxlength="200"></textarea>
+    <button>Dodaj</button>
+    <div class="tekst"></div>
+    <div class="komunikat"></div>
+    <script type="text/javascript">
+        $('textarea').keydown(() => {
+            const tekst = $('textarea').val();
+            $('.komunikat').html(`Mozesz wpisac jeszcze ${200 - tekst.length} znakow`)
+        });
+        $('button').click(() => {
+            $('.tekst').html($('textarea').val())
+            $('textarea').val('');
+        });
+
+    </script>
+</body>
+
+</html>
