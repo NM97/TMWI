@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        div {
+            height: 100px;
+            width: 100px;
+            color: white;
+            display: flex;
+        }
+        .p1{
+            background-color: red;
+        }
+        .p2{
+            background-color: green;
+        }
+        .p3{
+            background-color: orange;
+        }
+    </style>
+</head>
+
+<body>
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js"></script>
+
+    <div class="p1">0</div>
+    <div class="p2">0</div>
+    <div class="p3">0</div>
+
+    <select>
+        <option>Wybierz</option>
+        <option value="p1">Przycisk 1</option>
+        <option value="p2">Przycisk 2</option>
+        <option value="p3">Przycisk 3</option>
+    </select>
+
+    <script>
+
+        $('div').click(function () {
+            this.innerHTML = Number(this.textContent) + 1;
+        })
+
+        $('select').change(function () {
+            $(`div.${this.value}`).html(0);
+        })
+
+    </script>
+
+</body>
+
+</html>
