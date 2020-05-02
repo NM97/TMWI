@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+
+
+<head>
+    <style>
+        .baner {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 25%;
+            background-color: black;
+        }
+
+        p {
+            opacity: 0.2;
+            font-size: 10px;
+            color: white;
+        }
+    </style>
+
+</head>
+
+<body>
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js"></script>
+    <div class="baner">
+        <p></p>
+    </div>
+    <input type='text' value='' />
+    <button>Start</button>
+
+    <script>
+
+        $('input').keyup(() => {
+            const value = $('input').val();
+            $('p').html(value);
+        });
+
+        $('button').click(() => {
+            $('p').animate({
+                opacity: '1',
+                fontSize: '40px'
+            }, 4000, () => {
+                $('p').animate({
+                    opacity: '0.2',
+                    fontSize: '10px'
+                })
+
+                $('p').fadeOut('slow', function () {
+                    html('');
+                });
+                $('input').val('');
+            });
+        });
+
+    </script>
+
+</body>
+
+</html>
