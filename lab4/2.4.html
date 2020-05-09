@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <style>
+        section {
+            position: relative;
+            height: 300px;
+            margin-bottom: 20px;
+        }
+
+        section>div {
+            display: flex;
+            justify-content: center;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            height: 0;
+            width: 50px;
+            background-color: red;
+            border: 1px solid black;
+        }
+    </style>
+
+</head>
+
+<body>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <section></section>
+    <label>Ilość słupków: <input class="barQTY" type='number' /></label>
+    <button class="set">Ustaw</button>
+    <br>
+    <label class="barHeight">Wysokość słupka (%):</label>
+    <button class="amount">Określ</button>
+    <br>
+    <label>Czas: <input class="time" type='number' /></label>
+    <button class="start">Start</button>
+
+    <script>
+        const bars = [];
+
+        const createBars = (procent, position) => {
+            const div = document.createElement('div');
+            div.style.left = `${position * 51}px`;
+            div.textContent = procent;
+            $('section').append(div);
+        }
+        $('.set').click(() => {
+        const valueQTY = $('.barQTY').val();
+        let i = 0;
+        for (i =  0; i < valueQTY; i++) {
+        const input = document.createElement("INPUT");
+        input.innerHTML = "";
+        $('label.barHeight').append(input);
+        input.classList.add('barHeight'+i);
+        }
+
+        })
+
+        $('.amount').click(() => {
+            const tabHeight = [];
+            const valueQTY = $('.barQTY').val();
+            let i = 0;
+
+            for (i =  0; i < valueQTY; i++) {
+             tabHeight[i] = $('.barHeight'+i).val();
+                }
+            
+           for (i =  0; i < valueQTY; i++) {
+            if (Number(tabHeight[i]) < 0 || Number(tabHeight[i]) > 100) tabHeight[i]=0;
+            console.log(tabHeight);
+            bars.push(Number(tabHeight[i]));
+                }
+            $('.bar').val('');
+        })
+
+        $('.start').click(() => {
+            const val = $('input').val();
+            if (bars.length === 0 || val < 1 || val > 10) return 0;
+            bars.forEach((el, e) => {
+                createBars(el, e);
+            })
+
+            $('section > div').each(function () {
+                const procent = this.textContent;
+
+                $(this).animate({
+                    height: `${procent}%`
+                }, Number(val) * 1000)
+            })
+        })
+
+    </script>
+
+</body>
+
+</html>
