@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        canvas {
+            border: 1px solid black;
+        }
+    </style>
+
+</head>
+
+<body>
+    <script type="text/javascript" src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js"></script>
+    <canvas width="400" height="400"></canvas>
+    <button>Start</button>
+    <script>
+
+        const canvas = document.querySelector("canvas");
+        const context = canvas.getContext("2d");
+        const square = { x: 0, y: 0 }
+        let side = 'right';
+        let pause = true;
+        
+        const rysuj = () => {
+            context.clearRect(0, 0, canvas.width, canvas.height);
+            context.fillRect(square.x, square.y, 50, 50);
+        }
+
+        rysuj();
+
+        setInterval(() => {
+
+            if (pause) return 0;
+
+            if (side === 'left') {
+                square.x = square.x - 1;
+            } else if (side === 'right') {
+                square.x = square.x + 1;
+            } else if (side === 'top') {
+                square.y = square.y - 1;
+            } else if (side === 'bottom') {
+                square.y = square.y + 1;
+            }
+
+            if (side === 'right' && square.x === canvas.width - 50)
+                side = 'bottom';
+            else if (side === 'bottom' && square.y === canvas.height - 50)
+                side = 'left';
+            else if (side === 'left' && square.x === 0)
+                side = 'top';
+            else if (side === 'top' && square.y === 0)
+                side = 'right'
+
+            rysuj();
+
+        }, 10)
+
+
+        $('button').click(() => {
+            pause = !pause;
+            console.log(pause)
+
+            if(pause===false){
+                $('button').html(`Stop`)
+            } else {
+                $('button').html(`Start`) 
+            };
+        })
+
+    </script>
+</body>
+
+</html>

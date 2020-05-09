@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pl">
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        section {
+            position: relative;
+            height: 300px;
+            width: 50px;
+            margin-bottom: 20px;
+            border: 1px solid black;
+        }
+
+        section>div {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            background-color: red;
+        }
+    </style>
+
+</head>
+
+<body>
+    <script type="text/javascript" src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js"></script>
+    <section>
+        <div></div>
+    </section>
+    Czas: <input type='number' />
+    <button>Start</button>
+
+    <script>
+
+        $('button').click(() => {
+            const value = $('input').val();
+            if (value < 1 || value > 10) return 0;
+
+            $('div').animate({
+                top: 0,
+            }, Number(value) * 1000)
+        })
+
+    </script>
+
+</body>
+
+</html>
