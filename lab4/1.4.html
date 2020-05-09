@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <style>
+        body {
+            margin: 0px;
+            padding: 0px;
+        }
+
+        .canvas {
+            width: 600px;
+            height: 600px;
+            border: 1px solid black;
+
+        }
+    </style>
+</head>
+
+<body>
+    <script type="text/javascript" src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js"></script>
+    <div class="position"></div>
+    <canvas class="canvas"></canvas>
+    <div>Sterowanie: &#11014;, &#11013;, &#11015;, &#10145;
+    </div>
+    <script>
+        const canvas = document.querySelector('canvas');
+        const context = canvas.getContext("2d");
+        let positionELement = { x: 0, y: 0 }
+
+        $('canvas').mousemove(function (evt) {
+            const positionX = evt.clientX - this.offsetLeft
+            const positionY = evt.clientY - this.offsetTop
+            $('div.position').html(`Pozycja - x: ${positionX}, y: ${positionY}`)
+        })
+
+        $('canvas').mouseleave(() => {
+            $('div.position').html('Pozycja - Kursor poza płótnem')
+        })
+
+        const moveElement = () => {
+            context.clearRect(0, 0, canvas.width, canvas.height);
+            context.fillStyle = "#00FFFF";
+            context.fillRect(positionELement.x, positionELement.y, 50, 25);
+        }
+
+        moveElement();
+
+        window.addEventListener('keyup', (evt) => {
+            const pxels = 25;
+            switch (evt.keyCode) {
+                case 38:
+                    positionELement.y = positionELement.y - pxels;
+                    break;
+                case 40:
+                    positionELement.y = positionELement.y + pxels;
+                    break;
+                case 39:
+                    positionELement.x = positionELement.x + pxels;
+                    break;
+                case 37:
+                    positionELement.x = positionELement.x - pxels;
+                    break;
+            }
+            moveElement();
+        });
+    </script>
+</body>
+
+</html>
