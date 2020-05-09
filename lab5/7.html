@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        .container {
+            width: 500px;
+            height: 500px;
+            border: 1px solid black;
+
+        }
+
+        .container>div {
+            position: relative;
+            left: 0;
+            width: 100px;
+            height: 100px;
+            background-color: blue;
+        }
+    </style>
+</head>
+
+<body>
+    <script type="text/javascript" src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js"></script>
+    <div class="container">
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+    <button>Start</button>
+</body>
+
+<script>
+    let counter = 0;
+    $("button").click(function () {
+
+        if (counter == 0) {
+            $(".container > div").each(function (index) {
+                $(this).delay(index * 1000).animate({ left: '400px' }, 1000);
+            });
+            counter = 1;
+        }
+        else {
+            $(".container > div").each(function (index) {
+                $(this).delay(index * 1000).animate({ left: '0px' }, 1000);
+            });
+            counter = 0;
+        }
+    })
+
+</script>
+
+</html>
